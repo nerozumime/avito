@@ -22,17 +22,20 @@ export const Paginator = (props: PaginatorProps) => {
 
   return (
     <div>
-      <button type='button' onClick={handlePrevPageClick} disabled={isLeftButtonDisabled}>
-        {'<'}
-      </button>
+      <div>
+        <button type='button' onClick={handlePrevPageClick} disabled={isLeftButtonDisabled}>
+          {'<'}
+        </button>
 
-      <span>
-        {paginator.currentPage} / {paginator.totalPages}
-      </span>
+        <span>
+          {paginator.currentPage} / {paginator.totalPages}
+        </span>
 
-      <button type='button' onClick={handleNextPageClick} disabled={isRightButtonDisabled}>
-        {'>'}
-      </button>
+        <button type='button' onClick={handleNextPageClick} disabled={isRightButtonDisabled}>
+          {'>'}
+        </button>
+      </div>
+      <div>{`Всего: ${paginator.totalItems} объявлений`}</div>
     </div>
   )
 }
