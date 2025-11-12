@@ -1,12 +1,12 @@
-    const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-const adsRoutes = require('./ads');
-const statsRoutes = require('./stats');
-const moderatorsRoutes = require('./moderators');
+const adsRoutes = require('./ads')
+const statsRoutes = require('./stats')
+const moderatorsRoutes = require('./moderators')
 
-router.use('/ads', adsRoutes);
-router.use('/stats', statsRoutes);
-router.use('/moderators', moderatorsRoutes);
+router.use('/ads', adsRoutes)
+router.use('/stats', statsRoutes)
+router.use('/moderators', moderatorsRoutes)
 
-module.exports = router;
+module.exports = router

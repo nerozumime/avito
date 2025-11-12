@@ -175,7 +175,15 @@ paths:
                 reason:
                   type: string
                   description: Причина отклонения
-                  enum: [Запрещенный товар, Неверная категория, Некорректное описание, Проблемы с фото, Подозрение на мошенничество, Другое]
+                  enum:
+                    [
+                      Запрещенный товар,
+                      Неверная категория,
+                      Некорректное описание,
+                      Проблемы с фото,
+                      Подозрение на мошенничество,
+                      Другое,
+                    ]
                 comment:
                   type: string
                   description: Дополнительный комментарий
@@ -221,7 +229,15 @@ paths:
                 reason:
                   type: string
                   description: Причина запроса изменений
-                  enum: [Запрещенный товар, Неверная категория, Некорректное описание, Проблемы с фото, Подозрение на мошенничество, Другое]
+                  enum:
+                    [
+                      Запрещенный товар,
+                      Неверная категория,
+                      Некорректное описание,
+                      Проблемы с фото,
+                      Подозрение на мошенничество,
+                      Другое,
+                    ]
                 comment:
                   type: string
                   description: Дополнительный комментарий
@@ -454,7 +470,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ModerationHistory'
-    
+
     Seller:
       type: object
       properties:
@@ -469,7 +485,7 @@ components:
         registeredAt:
           type: string
           format: date-time
-    
+
     ModerationHistory:
       type: object
       properties:
@@ -490,7 +506,7 @@ components:
         timestamp:
           type: string
           format: date-time
-    
+
     Pagination:
       type: object
       properties:
@@ -502,7 +518,7 @@ components:
           type: integer
         itemsPerPage:
           type: integer
-    
+
     StatsSummary:
       type: object
       properties:
@@ -522,7 +538,7 @@ components:
           type: number
         averageReviewTime:
           type: integer
-    
+
     ActivityData:
       type: object
       properties:
@@ -535,7 +551,7 @@ components:
           type: integer
         requestChanges:
           type: integer
-    
+
     DecisionsData:
       type: object
       properties:
@@ -545,7 +561,7 @@ components:
           type: number
         requestChanges:
           type: number
-    
+
     Moderator:
       type: object
       properties:
@@ -563,7 +579,7 @@ components:
           type: array
           items:
             type: string
-    
+
     ModeratorStats:
       type: object
       properties:
@@ -579,7 +595,7 @@ components:
           type: integer
         approvalRate:
           type: number
-  
+
   responses:
     BadRequest:
       description: Некорректный запрос
@@ -592,7 +608,7 @@ components:
                 type: string
               message:
                 type: string
-    
+
     NotFound:
       description: Ресурс не найден
       content:
@@ -604,7 +620,7 @@ components:
                 type: string
               id:
                 type: integer
-    
+
     InternalServerError:
       description: Внутренняя ошибка сервера
       content:
