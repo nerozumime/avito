@@ -50,6 +50,16 @@ export interface IAdFeatures {
   Цвет: TAdColor
 }
 
+export interface IModerationHistory {
+  id: number
+  moderatorId: number
+  moderatorName: string
+  action: TAdStatus
+  reason: TAdRejectReason
+  comment?: string
+  timestamp: string
+}
+
 export interface IAd {
   id: number
   title: string
@@ -64,7 +74,7 @@ export interface IAd {
   images: string[]
   seller: ISeller
   characteristics: IAdFeatures
-  moderationHistory: Array<any>
+  moderationHistory: Array<IModerationHistory>
 }
 
 export interface IPagination {
