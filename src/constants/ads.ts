@@ -15,4 +15,8 @@ export const AD_STATUS = {
     label: 'На доработке',
     color: 'yellow',
   },
+  draft: {
+    label: 'На доработке',
+    color: 'orange',
+  },
 } as const
