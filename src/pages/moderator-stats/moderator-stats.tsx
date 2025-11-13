@@ -1,29 +1,39 @@
 import { type ChangeEvent, useCallback, useEffect, useState } from 'react'
 import { StatsApi } from '../../api/ads-api/stats-api.ts'
-import type { IModeratorActivity, IModeratorDecisions, IModeratorSummary, TStatsPeriod } from '../../types/stats-api.ts'
+import type {
+  IModeratorActivity,
+  IModeratorDecisions,
+  IModeratorSummary,
+  TChartsCategories,
+  TStatsPeriod,
+} from '../../types/stats-api.ts'
 import { BarChart } from '../../components/bar-chart/bar-chart.tsx'
+import { CircleChart } from '../../components/circle-chart/circle-chart.tsx'
+import { PERIODS } from '../../constants/ads.ts'
+import { DoughnutChart } from '../../components/doughnut-chart/doughnut-chart.tsx'
 
 export function ModeratorStats() {
   const [stats, setStats] = useState<IModeratorSummary | null>(null)
   const [activity, setActivity] = useState<IModeratorActivity[]>([])
   const [decisions, setDecisions] = useState<IModeratorDecisions | null>()
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState<TChartsCategories>()
   const [period, setPeriod] = useState<TStatsPeriod>('week')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-
   const fetchStats = useCallback(async () => {
     try {
       setLoading(true)
       setError(null)
-      const [stats, activity, decisions] = await Promise.all([
+      const [stats, activity, decisions, categories] = await Promise.all([
         StatsApi.fetchStats(period),
         StatsApi.fetchActivity(period),
         StatsApi.fetchDecisions(period),
+        StatsApi.fetchCategories(period),
       ])
       setStats(stats)
       setActivity(activity)
       setDecisions(decisions)
+      setCategories(categories)
     } catch (error: any) {
       setError(error.message)
     } finally {
@@ -85,11 +95,12 @@ export function ModeratorStats() {
       {activity.length > 0 && (
         <section>
           <div>
-            <span>График активности </span>
-            <BarChart data={activity} />
+            <BarChart data={activity} period={PERIODS[period]} />
           </div>
         </section>
       )}
+      {decisions && <CircleChart data={decisions} />}
+      {categories && <DoughnutChart data={categories} />}
     </div>
   )
 }
