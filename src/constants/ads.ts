@@ -21,4 +21,10 @@ export const AD_STATUS = {
   },
 } as const
 
+export const PERIODS = {
+  today: 'сегодня',
+  week: '7 дней',
+  month: '30 дней',
+}
+
 export const API_BASE_URL = 'http://localhost:3001/api/v1'
