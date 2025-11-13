@@ -21,17 +21,18 @@ export type TAdPriority = 'normal' | 'urgent'
 export type TAdProductCondition = 'Новое' | 'Б/у' | 'Отличное' | 'Хорошее' | 'Удовлетворительное'
 export type TAdWarrantyStatus = 'Есть' | 'Нет' | 'Частичная'
 export type TAdColor = 'Черный' | 'Белый' | 'Серый' | 'Синий' | 'Красный' | 'Зеленый'
+export type TAdsSortOptions = 'createdAt' | 'price' | 'priority'
 
-export interface IRequest {
-  page: number
-  limit: number
-  status: string
-  categoryId: number
-  minPrice: number
-  maxPrice: number
-  search: string
-  sortBy: 'createdAt' | 'price' | 'priority'
-  sortOrder: 'asc' | 'desc'
+export interface IFilter {
+  page?: number
+  limit?: number
+  status: string[]
+  categoryId?: number | null
+  minPrice?: number
+  maxPrice?: number
+  search?: string
+  sortBy?: TAdsSortOptions
+  sortOrder?: 'asc' | 'desc'
 }
 
 export interface ISeller {
