@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
-import { AdsList } from '../components/ads-list/ads-list.tsx'
-import { DetailedAd } from '../components/detailed-ad/detailed-ad.tsx'
-import { ModeratorStats } from '../components/moderator-stats/moderator-stats.tsx'
+import { AdsList } from '../pages/ads-list/ads-list.tsx'
+import { DetailedAd } from '../pages/detailed-ad/detailed-ad.tsx'
+import { ModeratorStats } from '../pages/moderator-stats/moderator-stats.tsx'
 import Modal from '../components/modal/modal.tsx'
 
 export function App() {
