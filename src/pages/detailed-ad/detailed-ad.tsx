@@ -24,8 +24,6 @@ export function DetailedAd() {
     navigate(from)
   }
 
-  if (!id) return null
-
   function handlePrevAd() {
     if (!id || parseInt(id) <= 1) return
     navigate(`/item/${parseInt(id) - 1}`, { state: { from: location } })
@@ -57,6 +55,7 @@ export function DetailedAd() {
 
   const fetchAd = useCallback(async () => {
     try {
+      if (!id) return
       setIsLoading(true)
       setError(null)
       const response: IAd = await AdsApi.getAdById(parseInt(id))
@@ -75,8 +74,33 @@ export function DetailedAd() {
     fetchAd()
   }, [fetchAd])
 
+  function handleHotkeyPress(e: KeyboardEvent) {
+    const { key } = e
+    if (key === 'A' || key === 'a' || key === 'ф' || key === 'Ф') {
+      handleApprove()
+    }
+    if (key === 'D' || key === 'd' || key === 'в' || key === 'В') {
+      handleModerate('rejected')
+    }
+    if (key === ',' || key === 'б') {
+      handlePrevAd()
+    }
+    if (key === '.' || key === 'ю') {
+      handleNextAd()
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleHotkeyPress)
+
+    return () => {
+      document.removeEventListener('keydown', handleHotkeyPress)
+    }
+  }, [handleHotkeyPress])
+
   if (isLoading) return <div>Идет загрузка пользователя...</div>
   if (error) return <div>{error}</div>
+  if (!id) return null
 
   return (
     <div>

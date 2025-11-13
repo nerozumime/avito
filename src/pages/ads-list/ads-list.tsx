@@ -14,6 +14,7 @@ export function AdsList() {
   const [paginator, setPaginator] = useState<IPagination | null>(null)
   const [page, setPage] = useState<number>(1)
   const timer = useRef<number | null>(null)
+  const searchRef = useRef<HTMLInputElement>(null)
   const [filters, setFilters] = useState<IFilter>({
     status: [],
     categoryId: null,
@@ -23,6 +24,18 @@ export function AdsList() {
     maxPrice: null,
     search: '',
   })
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleFocusSearch)
+  }, [])
+
+  function handleFocusSearch(e: KeyboardEvent) {
+    const { key } = e
+    if (searchRef.current && key === '/') {
+      e.preventDefault() // Убираем возможность ввода слеша но устраняем баг ввода
+      searchRef.current.focus()
+    }
+  }
 
   const fetchAds = useCallback(async (page: number, filters: IFilter) => {
     try {
@@ -186,7 +199,7 @@ export function AdsList() {
         <div>
           <span>Название</span>
           <div>
-            <input name={'search'} type={'text'} value={filters.search} onChange={handleFilterChange} />
+            <input name={'search'} type={'text'} value={filters.search} onChange={handleFilterChange} ref={searchRef} />
           </div>
         </div>
         <div>
