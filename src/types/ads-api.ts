@@ -1,11 +1,4 @@
-export type TAdRejectReason =
-  | 'Запрещенный товар'
-  | 'Неверная категория'
-  | 'Некорректное описание'
-  | 'Проблемы с фото'
-  | 'Подозрение на мошенничество'
-  | 'Другое'
-  | string
+export type TAdRejectReason = string
 
 export type TAdCategory =
   | 'Электроника'
