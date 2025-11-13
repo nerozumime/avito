@@ -28,7 +28,7 @@ export function PreviewAd({ ad }: PreviewAdProps) {
         <span>{ad.createdAt.split('T')[0]}</span>
       </section>
       <section className={style.statuses}>
-        <span style={{ color: status.color }}>{status.label}</span>
+        <span style={{ color: status?.color }}>{status?.label}</span>
         {ad.priority === 'urgent' && (
           <div title={'Срочный приоритет'}>
             <AttentionIcon />
