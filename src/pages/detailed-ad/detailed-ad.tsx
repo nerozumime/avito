@@ -8,7 +8,7 @@ import { AD_STATUS } from '../../constants/ads.ts'
 import { Button } from '../../widgets/button/button.tsx'
 import { useAppDispatch } from '../../services/store/store.ts'
 import { openModal } from '../../services/slices/modalSlice.ts'
-import { ModerateForm } from '../modarate-form/moderate-form.tsx'
+import { ModerateForm } from '../../components/modarate-form/moderate-form.tsx'
 
 export function DetailedAd() {
   const navigate = useNavigate()
@@ -28,12 +28,12 @@ export function DetailedAd() {
 
   function handlePrevAd() {
     if (!id || parseInt(id) <= 1) return
-    navigate(`/item/${parseInt(id) - 1}`)
+    navigate(`/item/${parseInt(id) - 1}`, { state: { from: location } })
   }
 
   function handleNextAd() {
     if (!id) return
-    navigate(`/item/${parseInt(id) + 1}`)
+    navigate(`/item/${parseInt(id) + 1}`, { state: { from: location } })
   }
 
   async function handleApprove() {
@@ -60,6 +60,9 @@ export function DetailedAd() {
       setAd(response)
     } catch (_) {
       setError('Ошибка получения объявления по id - ' + id)
+      handleReturnToList() // Временное решение для невалидного перемещения на следующую страницу
+      /* По хорошему, вынести пагинатор в redux и оттуда брать значение максимального элемента
+       * и валидировать при попытке преехода на следующую страницу */
     } finally {
       setIsLoading(false)
     }
