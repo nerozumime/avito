@@ -27,4 +27,19 @@ export const PERIODS = {
   month: '30 дней',
 }
 
+export const STATUS_COLOR_MAP = {
+  approved: {
+    backgroundColor: '#42e17c',
+    borderColor: '#139816',
+  },
+  rejected: {
+    backgroundColor: '#ff3d3d',
+    borderColor: '#ca3636',
+  },
+  requestChanges: {
+    backgroundColor: '#f3c34a',
+    borderColor: '#c88b46',
+  },
+}
+
 export const API_BASE_URL = 'http://localhost:3001/api/v1'

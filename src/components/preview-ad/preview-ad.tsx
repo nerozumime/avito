@@ -2,7 +2,7 @@ import type { IAd } from '../../types/ads-api.ts'
 import style from './preview-ad.module.css'
 import { useNavigate } from 'react-router'
 import { useLocation } from 'react-router-dom'
-import { AD_STATUS } from '../../constants/ads.ts'
+import { AD_STATUS } from '../../constants/constants.ts'
 import { AttentionIcon } from '../icons/attention-icon/attention-icon.tsx'
 import { Button } from '../../widgets/button/button.tsx'
 

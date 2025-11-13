@@ -4,7 +4,7 @@ import { type ChangeEvent, useCallback, useEffect, useRef, useState } from 'reac
 import { Paginator } from '../../components/paginator/paginator.tsx'
 import { PreviewAd } from '../../components/preview-ad/preview-ad.tsx'
 import style from './ads-list.module.css'
-import { AD_STATUS } from '../../constants/ads.ts'
+import { AD_STATUS } from '../../constants/constants.ts'
 import { Button } from '../../widgets/button/button.tsx'
 
 export function AdsList() {

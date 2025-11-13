@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '../../constants/ads.ts'
+import { API_BASE_URL } from '../../constants/constants.ts'
 import type {
   IModeratorActivity,
   IModeratorDecisions,
