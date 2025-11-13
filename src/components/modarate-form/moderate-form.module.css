@@ -1,0 +1,83 @@
+.input {
+  background: none;
+  border: 1px solid grey;
+  border-radius: 0.5em;
+  color: var(--general-color);
+  font-size: 1em;
+  padding: 1em 2em;
+  width: 70%;
+}
+
+.input::placeholder {
+  color: grey;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input:focus-visible {
+  outline: 2px dashed var(--accent-color);
+}
+
+.textarea {
+  resize: none;
+}
+
+.form {
+  align-items: center;
+  background: var(--background-color);
+  border-radius: var(--radius-base);
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  justify-content: space-evenly;
+  max-block-size: 700px;
+  max-inline-size: 870px;
+  padding: 2.5em 1em;
+  position: relative;
+  text-align: center;
+  transition: background-color 0.2s ease;
+  width: 90vw;
+}
+
+.submit, .submit-disabled {
+  font-family: var(--font-family-title), sans-serif;
+  letter-spacing: 1px;
+  padding: 1em;
+  text-transform: uppercase;
+  width: 70%;
+}
+
+.title {
+  color: var(--general-color);
+  font-family: var(--font-family-title), serif;
+  font-size: 2em;
+}
+
+.submit {
+  background: var(--accent-color);
+  color: var(--general-color);
+}
+
+.submit:hover {
+  filter: brightness(90%);
+}
+
+.submit-disabled {
+  background: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+.error {
+  bottom: 1em;
+  color: grey;
+  position: absolute;
+}
+
+.close {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
