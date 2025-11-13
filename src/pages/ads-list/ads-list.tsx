@@ -42,10 +42,6 @@ export function AdsList() {
   }, [])
 
   useEffect(() => {
-    fetchAds(1, filters)
-  }, [])
-
-  useEffect(() => {
     fetchAds(page, filters)
   }, [page])
 
@@ -54,7 +50,7 @@ export function AdsList() {
       clearTimeout(timer.current)
     }
     timer.current = setTimeout(async () => {
-      await fetchAds(page, filters)
+      fetchAds(1, filters)
     }, 700)
     console.log(filters)
     return () => {
