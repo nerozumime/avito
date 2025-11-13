@@ -6,9 +6,10 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 interface BarChartProps {
   data: IModeratorActivity[]
+  period: string
 }
 
-export const BarChart = ({ data }: BarChartProps) => {
+export const BarChart = ({ data, period }: BarChartProps) => {
   const chartData = {
     labels: data.map((item) => {
       const date = new Date(item.date)
@@ -42,5 +43,15 @@ export const BarChart = ({ data }: BarChartProps) => {
     ],
   }
 
-  return <Bar data={chartData} />
+  const options = {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: `График активности (${period})`,
+      },
+    },
+  }
+
+  return <Bar data={chartData} options={options} />
 }
