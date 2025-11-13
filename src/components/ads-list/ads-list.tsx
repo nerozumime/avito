@@ -1,5 +1,5 @@
 import { AdsApi } from '../../api/ads-api/ads-api.ts'
-import type { IAd, IFilter, IPagination, IResponse } from '../../types/api.ts'
+import type { IAd, IFilter, IPagination, IResponse, TAdsSortOptions, TSortOrder } from '../../types/api.ts'
 import { type ChangeEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { Paginator } from '../paginator/paginator.tsx'
 import { PreviewAd } from '../preview-ad/preview-ad.tsx'
@@ -19,6 +19,9 @@ export function AdsList() {
     categoryId: null,
     sortBy: 'createdAt',
     sortOrder: 'desc',
+    minPrice: null,
+    maxPrice: null,
+    search: '',
   })
 
   const fetchAds = useCallback(async (page: number, filters: IFilter) => {
@@ -75,9 +78,9 @@ export function AdsList() {
       categoryId: null,
       sortBy: 'createdAt',
       sortOrder: 'desc',
-      minPrice: undefined,
-      maxPrice: undefined,
-      search: undefined,
+      minPrice: null,
+      maxPrice: null,
+      search: '',
     })
     setPage(1)
   }, [])
@@ -106,6 +109,13 @@ export function AdsList() {
       }
     })
   }, [])
+
+  function handleSort(e: ChangeEvent<HTMLSelectElement>) {
+    const { value } = e.target
+    const sortBy = value.split(' ')[0] as TAdsSortOptions
+    const sortOrder = value.split(' ')[1] as TSortOrder
+    setFilters((prev) => ({ ...prev, sortBy, sortOrder }))
+  }
 
   if (error) {
     return <div>{error}</div>
@@ -169,11 +179,11 @@ export function AdsList() {
           <div>
             <label>
               Мин. цена
-              <input type={'number'} name={'minPrice'} value={filters.minPrice} onChange={handleFilterChange} />
+              <input type={'number'} name={'minPrice'} value={filters.minPrice ?? ''} onChange={handleFilterChange} />
             </label>
             <label>
               Макс. цена
-              <input type={'number'} name={'maxPrice'} value={filters.maxPrice} onChange={handleFilterChange} />
+              <input type={'number'} name={'maxPrice'} value={filters.maxPrice ?? ''} onChange={handleFilterChange} />
             </label>
           </div>
         </div>
@@ -181,6 +191,19 @@ export function AdsList() {
           <span>Название</span>
           <div>
             <input name={'search'} type={'text'} value={filters.search} onChange={handleFilterChange} />
+          </div>
+        </div>
+        <div>
+          <span>Сортировать</span>
+          <div>
+            <select onChange={handleSort} name={'sortBy'} value={`${filters.sortBy} ${filters.sortOrder}`}>
+              <option value={'createdAt desc'}>По дате создания (сначала новые)</option>
+              <option value={'price desc'}>По цене (по убыванию)</option>
+              <option value={'priority desc'}>По приоритету (сначала приоритетные)</option>
+              <option value={'createdAt asc'}>По дате создания (сначала старые)</option>
+              <option value={'price asc'}>По цене (по возрастанию)</option>
+              <option value={'priority asc'}>По приоритету (сначала обычные)</option>
+            </select>
           </div>
         </div>
       </div>
