@@ -1,7 +1,6 @@
 import axios from 'axios'
-import type { IAd, IFilter, IResponse, TAdRejectReason } from '../../types/api.ts'
-
-const API_BASE_URL = 'http://localhost:3001/api/v1'
+import type { IAd, IFilter, IResponse, TAdRejectReason } from '../../types/ads-api.ts'
+import { API_BASE_URL } from '../../constants/ads.ts'
 
 export const AdsApi = {
   getAds: async (params: Partial<IFilter>): Promise<IResponse> => {

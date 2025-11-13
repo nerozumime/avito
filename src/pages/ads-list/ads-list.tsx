@@ -1,5 +1,5 @@
 import { AdsApi } from '../../api/ads-api/ads-api.ts'
-import type { IAd, IFilter, IPagination, IResponse, TAdsSortOptions, TSortOrder } from '../../types/api.ts'
+import type { IAd, IFilter, IPagination, IResponse, TAdsSortOptions, TSortOrder } from '../../types/ads-api.ts'
 import { type ChangeEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { Paginator } from '../../components/paginator/paginator.tsx'
 import { PreviewAd } from '../../components/preview-ad/preview-ad.tsx'
