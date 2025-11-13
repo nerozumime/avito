@@ -5,6 +5,7 @@ export type TAdRejectReason =
   | 'Проблемы с фото'
   | 'Подозрение на мошенничество'
   | 'Другое'
+  | string
 
 export type TAdCategory =
   | 'Электроника'
@@ -16,7 +17,7 @@ export type TAdCategory =
   | 'Мода'
   | 'Детское'
 
-export type TAdStatus = 'pending' | 'approved' | 'rejected'
+export type TAdStatus = 'pending' | 'approved' | 'rejected' | 'requestChanges'
 export type TAdPriority = 'normal' | 'urgent'
 export type TAdProductCondition = 'Новое' | 'Б/у' | 'Отличное' | 'Хорошее' | 'Удовлетворительное'
 export type TAdWarrantyStatus = 'Есть' | 'Нет' | 'Частичная'

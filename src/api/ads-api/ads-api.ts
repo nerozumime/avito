@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { IFilter, IResponse, TAdRejectReason } from '../../types/api.ts'
+import type { IAd, IFilter, IResponse, TAdRejectReason } from '../../types/api.ts'
 
 const API_BASE_URL = 'http://localhost:3001/api/v1'
 
@@ -25,7 +25,7 @@ export const AdsApi = {
     }
   },
 
-  getAdById: async (id: number) => {
+  getAdById: async (id: number): Promise<IAd> => {
     try {
       const { data } = await axios.get(`${API_BASE_URL}/ads/${id}`)
       return data
