@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { closeModal } from '../../services/slices/modalSlice.ts'
 import { CloseIcon } from '../icons/close-icon/close-icon.tsx'
 import { Button } from '../../widgets/button/button.tsx'
-import type { TAdStatus } from '../../types/api.ts'
+import type { TAdStatus } from '../../types/ads-api.ts'
 import { useAppDispatch } from '../../services/store/store.ts'
 import { AdsApi } from '../../api/ads-api/ads-api.ts'
 
@@ -43,13 +43,18 @@ export function ModerateForm({ status, callback, adId }: ModerateFormProps) {
     e.preventDefault()
     if (!validateForm()) return
     const reason = form.quickReason !== 'Другое' ? form.quickReason : form.reason
-    if (isReject) {
-      await AdsApi.rejectAd(parseInt(adId), reason, form.comment)
-    } else {
-      await AdsApi.requestChanges(parseInt(adId), reason, form.comment)
+    try {
+      if (isReject) {
+        await AdsApi.rejectAd(parseInt(adId), reason, form.comment)
+      } else {
+        await AdsApi.requestChanges(parseInt(adId), reason, form.comment)
+      }
+      await callback()
+    } catch (error: any) {
+      throw new Error(error.message || 'Ошибка отправки формы')
+    } finally {
+      dispatch(closeModal())
     }
-    callback()
-    dispatch(closeModal())
   }
 
   return (
