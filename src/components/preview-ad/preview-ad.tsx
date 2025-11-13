@@ -1,4 +1,4 @@
-import type { IAd } from '../../types/api.ts'
+import type { IAd } from '../../types/ads-api.ts'
 import style from './preview-ad.module.css'
 import { useNavigate } from 'react-router'
 import { useLocation } from 'react-router-dom'
