@@ -1,10 +1,10 @@
 import axios from 'axios'
-import type { IRequest, IResponse, TAdRejectReason } from '../../types/api.ts'
+import type { IFilter, IResponse, TAdRejectReason } from '../../types/api.ts'
 
 const API_BASE_URL = 'http://localhost:3001/api/v1'
 
 export const AdsApi = {
-  getAds: async (params: Partial<IRequest>): Promise<IResponse> => {
+  getAds: async (params: Partial<IFilter>): Promise<IResponse> => {
     try {
       const { data } = await axios.get(`${API_BASE_URL}/ads`, {
         params: {
