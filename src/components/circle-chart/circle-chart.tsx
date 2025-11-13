@@ -10,7 +10,7 @@ interface CircleChart {
 
 export const CircleChart = ({ data }: CircleChart) => {
   const total = data.approved + data.rejected + data.requestChanges
-
+  if (total <= 0) return null
   const chartData = {
     labels: ['Одобрено', 'Отклонено', 'На доработку'],
     datasets: [
@@ -18,7 +18,7 @@ export const CircleChart = ({ data }: CircleChart) => {
         data: [data.approved, data.rejected, data.requestChanges],
         backgroundColor: ['#4ade80', '#f87171', '#fbbf24'],
         borderColor: ['#16a34a', '#dc2626', '#d97706'],
-        borderWidth: 2,
+        borderWidth: 1,
         hoverOffset: 15,
       },
     ],

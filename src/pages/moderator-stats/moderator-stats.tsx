@@ -9,7 +9,7 @@ import type {
 } from '../../types/stats-api.ts'
 import { BarChart } from '../../components/bar-chart/bar-chart.tsx'
 import { CircleChart } from '../../components/circle-chart/circle-chart.tsx'
-import { PERIODS } from '../../constants/ads.ts'
+import { PERIODS } from '../../constants/constants.ts'
 import { DoughnutChart } from '../../components/doughnut-chart/doughnut-chart.tsx'
 
 export function ModeratorStats() {
@@ -92,13 +92,7 @@ export function ModeratorStats() {
         <div>{`Ср. время ${(stats.averageReviewTime / (1000 * 60)).toFixed(1)} мин`}</div>
       </section>
 
-      {activity.length > 0 && (
-        <section>
-          <div>
-            <BarChart data={activity} period={PERIODS[period]} />
-          </div>
-        </section>
-      )}
+      {activity.length > 0 && <BarChart data={activity} period={PERIODS[period]} />}
       {decisions && <CircleChart data={decisions} />}
       {categories && <DoughnutChart data={categories} />}
     </div>

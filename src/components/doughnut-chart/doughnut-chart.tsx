@@ -9,7 +9,7 @@ export const DoughnutChart = ({ data }: DoughnutChartProps) => {
   const categories = Object.keys(data)
   const values = Object.values(data)
   const total = values.reduce((sum, value) => sum + value, 0)
-
+  if (categories.length === 0) return null
   const chartData = {
     labels: categories,
     datasets: [
