@@ -1,3 +1,6 @@
+import { Button } from '../../widgets/button/button.tsx'
+import { ArrowIcon } from '../icons/arrow-icon/arrow-icon.tsx'
+
 interface PaginatorProps {
   onNextPageClick: () => void
   onPrevPageClick: () => void
@@ -23,17 +26,23 @@ export const Paginator = (props: PaginatorProps) => {
   return (
     <div>
       <div>
-        <button type='button' onClick={handlePrevPageClick} disabled={isLeftButtonDisabled}>
-          {'<'}
-        </button>
+        <Button
+          type='button'
+          onClick={handlePrevPageClick}
+          disabled={isLeftButtonDisabled}
+          icon={<ArrowIcon rotateAngle={90} />}
+        />
 
         <span>
           {paginator.currentPage} / {paginator.totalPages}
         </span>
 
-        <button type='button' onClick={handleNextPageClick} disabled={isRightButtonDisabled}>
-          {'>'}
-        </button>
+        <Button
+          type='button'
+          onClick={handleNextPageClick}
+          disabled={isRightButtonDisabled}
+          icon={<ArrowIcon rotateAngle={-90} />}
+        />
       </div>
       <div>{`Всего: ${paginator.totalItems} объявлений`}</div>
     </div>
