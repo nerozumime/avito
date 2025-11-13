@@ -2,7 +2,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import { Gallery } from '../../widgets/gallery/gallery.tsx'
 import { useCallback, useEffect, useState } from 'react'
-import type { IAd, TAdStatus } from '../../types/api.ts'
+import type { IAd, TAdStatus } from '../../types/ads-api.ts'
 import { AdsApi } from '../../api/ads-api/ads-api.ts'
 import { AD_STATUS } from '../../constants/ads.ts'
 import { Button } from '../../widgets/button/button.tsx'
@@ -38,9 +38,12 @@ export function DetailedAd() {
 
   async function handleApprove() {
     if (!id) return
-    fetchAd
-    await AdsApi.approveAd(parseInt(id))
-    fetchAd()
+    try {
+      await AdsApi.approveAd(parseInt(id))
+      await fetchAd()
+    } catch (_) {
+      throw new Error('Ошибка одобрения объявления id - ' + id)
+    }
   }
 
   async function handleModerate(status: TAdStatus) {
