@@ -4,11 +4,13 @@ import type { IModeratorDecisions } from '../../types/stats-api.ts'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-interface PieChartProps {
+interface CircleChart {
   data: IModeratorDecisions
 }
 
-export const CircleChart = ({ data }: PieChartProps) => {
+export const CircleChart = ({ data }: CircleChart) => {
+  const total = data.approved + data.rejected + data.requestChanges
+
   const chartData = {
     labels: ['Одобрено', 'Отклонено', 'На доработку'],
     datasets: [
@@ -25,9 +27,22 @@ export const CircleChart = ({ data }: PieChartProps) => {
   const options = {
     responsive: true,
     plugins: {
+      legend: {
+        position: 'top' as const,
+      },
       title: {
         display: true,
         text: 'Диаграмма распределения решений',
+      },
+      tooltip: {
+        callbacks: {
+          label: function (context: any) {
+            const label = context.label || ''
+            const value = context.parsed
+            const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : '0'
+            return `${label}: ${value} (${percentage}%)`
+          },
+        },
       },
     },
   }
