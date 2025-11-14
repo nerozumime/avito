@@ -2,6 +2,7 @@ import { AD_STATUS } from '../../constants/constants.ts'
 import { Button } from '../button/button.tsx'
 import type { IFilter } from '../../types/ads-api.ts'
 import type { ChangeEvent, Ref } from 'react'
+import { Input } from '../../components/input/input.tsx'
 
 interface FilterProps {
   filters: IFilter
@@ -27,36 +28,30 @@ export function Filter({
       <section>
         <fieldset>
           <legend>Статусы:</legend>
-          <label>
-            <input
-              type='checkbox'
-              name='status'
-              value='pending'
-              onChange={handleStatusChange}
-              checked={filters.status.includes('pending')}
-            />
-            {AD_STATUS.pending.label}
-          </label>
-          <label>
-            <input
-              type='checkbox'
-              name='status'
-              value='approved'
-              onChange={handleStatusChange}
-              checked={filters.status.includes('approved')}
-            />
-            {AD_STATUS.approved.label}
-          </label>
-          <label>
-            <input
-              type='checkbox'
-              name='status'
-              value='rejected'
-              onChange={handleStatusChange}
-              checked={filters.status.includes('rejected')}
-            />
-            {AD_STATUS.rejected.label}
-          </label>
+          <Input
+            type='checkbox'
+            name='status'
+            value='pending'
+            onChange={handleStatusChange}
+            checked={filters.status.includes('pending')}
+            label={AD_STATUS.pending.label}
+          />
+          <Input
+            type='checkbox'
+            name='status'
+            value='approved'
+            onChange={handleStatusChange}
+            checked={filters.status.includes('approved')}
+            label={AD_STATUS.approved.label}
+          />
+          <Input
+            type='checkbox'
+            name='status'
+            value='rejected'
+            onChange={handleStatusChange}
+            checked={filters.status.includes('rejected')}
+            label={AD_STATUS.rejected.label}
+          />
         </fieldset>
       </section>
       {/*Секция фильтров категории*/}
