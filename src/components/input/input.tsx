@@ -9,22 +9,22 @@ interface InputProps {
   name: string
   value: string
   label: string
-  type: 'radio' | 'checkbox' | 'dropdown'
+  type: 'radio' | 'checkbox'
 }
 
-export function Input({ checked, onChange, name, value, label }: InputProps) {
+export function Input({ checked, onChange, name, value, label, type }: InputProps) {
   return (
     <label className={styles['label-ui']}>
       <input
         name={name}
-        type={'checkbox'}
+        type={type}
         checked={checked}
         onChange={onChange}
         className={clsx(styles['input'])}
         tabIndex={-1}
         value={value}
       />
-      <CheckboxIcon checked={checked} type={'checkbox'} styleClass={styles.checkbox} />
+      <CheckboxIcon checked={checked} type={type} styleClass={styles.checkbox} />
       <span className={styles['span-ui']}>{label}</span>
     </label>
   )
