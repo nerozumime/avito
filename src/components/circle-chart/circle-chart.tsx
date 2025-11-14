@@ -47,5 +47,5 @@ export const CircleChart = ({ data }: CircleChart) => {
     },
   }
 
-  return <Pie data={chartData} options={options} />
+  return <Pie data={chartData} options={options} className={'diagram'} />
 }

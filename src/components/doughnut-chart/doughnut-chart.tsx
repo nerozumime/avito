@@ -1,5 +1,6 @@
 import { Doughnut } from 'react-chartjs-2'
 import type { TChartsCategories } from '../../types/stats-api.ts'
+import { CATEGORY_COLOR_MAP } from '../../constants/constants.ts'
 
 interface DoughnutChartProps {
   data: TChartsCategories
@@ -15,7 +16,7 @@ export const DoughnutChart = ({ data }: DoughnutChartProps) => {
     datasets: [
       {
         data: values,
-        backgroundColor: ['#4f46e5', '#ec4899', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'],
+        backgroundColor: Object.values(CATEGORY_COLOR_MAP),
         borderColor: '#fff',
         borderWidth: 3,
         hoverOffset: 20,
@@ -47,5 +48,5 @@ export const DoughnutChart = ({ data }: DoughnutChartProps) => {
     },
   }
 
-  return <Doughnut data={chartData} options={options} />
+  return <Doughnut data={chartData} options={options} className={'diagram'} />
 }

@@ -59,5 +59,5 @@ export const BarChart = ({ data, period }: BarChartProps) => {
     },
   }
 
-  return <Bar data={chartData} options={options} />
+  return <Bar data={chartData} options={options} className={'diagram'} />
 }
