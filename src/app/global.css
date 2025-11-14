@@ -1,0 +1,27 @@
+body {
+  background-color: var(--background-color);
+  color: var(--general-color);
+}
+
+.button-primary {
+  appearance: none;
+  background-color: var(--accent-blue-color);
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  transition: 0.2s ease;
+}
+
+.button-primary:hover {
+  filter: brightness(90%);
+}
+
+.button-primary:active {
+  box-shadow: 0 2px 0 #027ebf;
+  translate: 0 2px;
+}
+
+.diagram {
+  max-height: 100vw;
+  max-width: 100vw;
+}
