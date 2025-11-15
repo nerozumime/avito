@@ -6,7 +6,7 @@ body {
 
 .button-primary {
   appearance: none;
-  background-color: var(--accent-blue-color);
+  background-color: var(--accent-color-type-one);
   border: none;
   border-radius: 0.4rem;
   padding: 0.5rem 1rem;

@@ -37,7 +37,7 @@
 
 .input:focus-visible {
   border-radius: 5px;
-  outline: 2px dashed var(--accent-blue-color);
+  outline: 2px dashed var(--accent-color-type-one);
 }
 
 .input {
@@ -59,12 +59,12 @@
 .reset {
   background: none;
   border:none;
-  color: var(--accent-blue-color);
+  color: var(--accent-color-type-one);
   font-size: 1rem;
   max-width: 160px;
 }
 
 .reset:hover {
-  color: var(--accent-red-color);
+  color: var(--accent-color-type-two);
 }
 

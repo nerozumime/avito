@@ -12,7 +12,7 @@ svg:focus-visible {
 }
 
 svg:focus-visible path {
-  stroke: var(--accent-blue-color);
+  stroke: var(--accent-color-type-one);
 }
 
 .label-ui:hover > * {

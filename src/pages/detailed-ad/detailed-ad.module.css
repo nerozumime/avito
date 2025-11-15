@@ -61,11 +61,11 @@
 }
 
 .button-approve {
-  background-color: var(--accent-green-color);
+  background-color: var(--accent-color-type-four);
 }
 
 .button-reject {
-  background-color: var(--accent-red-color);
+  background-color: var(--accent-color-type-two);
 }
 
 .moderation-history{

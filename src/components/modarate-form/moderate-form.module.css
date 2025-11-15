@@ -17,7 +17,7 @@
 }
 
 .input:focus-visible {
-  outline: 2px dashed var(--accent-blue-color);
+  outline: 2px dashed var(--accent-color-type-one);
 }
 
 .textarea {
@@ -58,7 +58,7 @@
 }
 
 .submit {
-  background: var(--accent-blue-color);
+  background: var(--accent-color-type-one);
   border: none;
 }
 
@@ -92,7 +92,7 @@
 }
 
 .close:hover svg path{
-  fill: var(--accent-red-color);
+  fill: var(--accent-color-type-two);
 }
 
 .select-label {

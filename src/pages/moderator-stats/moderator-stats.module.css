@@ -47,21 +47,21 @@ display: flex;
 }
 
 .box:first-of-type {
-  background-color: var(--accent-blue-color);
+  background-color: var(--accent-color-type-one);
 }
 
 .box:nth-of-type(2) {
-  background-color: var(--accent-green-color);
+  background-color: var(--accent-color-type-four);
   --stats-box-shadow: #31aa5d;
 }
 
 .box:nth-of-type(3) {
-  background-color: var(--accent-red-color);
+  background-color: var(--accent-color-type-two);
   --stats-box-shadow: #ba2f3d;
 }
 
 .box:nth-of-type(4) {
-  background-color: var(--accent-purple-color);
+  background-color: var(--accent-color-type-three);
   --stats-box-shadow: #6d43ac;
 }
 

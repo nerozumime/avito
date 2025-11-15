@@ -16,7 +16,7 @@
 }
 
 .stats-nav-button {
-  background-color: var(--accent-blue-color);
+  background-color: var(--accent-color-type-one);
   border: none;
   border-radius: 0.4rem;
   bottom: 1rem;
