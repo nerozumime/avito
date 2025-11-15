@@ -44,13 +44,13 @@ export const PERIODS = {
 
 export const CATEGORY_COLOR_MAP = {
   Электроника: '#4d45f3',
-  Недвижимость: '#f89c43',
-  Транспорт: '#10b981',
+  Мода: '#a822a1',
+  Транспорт: '#745aa8',
   Работа: '#f59e0b',
   Услуги: '#4480ef',
-  Животные: '#83f65c',
-  Мода: '#ff46f6',
-  Детское: '#4DF7FAED',
+  Животные: '#509c38',
+  Недвижимость: '#8c6d6d',
+  Детское: '#2C989AED',
 }
 
 export const API_BASE_URL = 'http://localhost:3001/api/v1'
