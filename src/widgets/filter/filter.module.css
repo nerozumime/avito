@@ -42,14 +42,14 @@
 
 .input {
   appearance: none;
-  background-color: #aaaaa9;
+  background-color: #f2f1f0;
   border: none;
   border-radius: 6px;
   padding: 0.5rem 0.5rem;
 }
 
-.input::placeholder {
-  font-size: 14px;
+.input::placeholder, select {
+  color: rgba(96, 96, 96, 0.65);
 }
 
 .label {
