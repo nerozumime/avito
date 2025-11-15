@@ -119,13 +119,16 @@ export function DetailedAd() {
           <Gallery images={Array(5).fill('/image-placeholder.jpeg')} />
           <section className={style['moderation-history']}>
             <span className={style['history-title']}>История модерации:</span>
-            <ul className={style['history-list']}>
-              {ad.moderationHistory.map((moderation) => (
-                <li key={moderation.id}>
-                  <ModerationItem moderation={moderation} />
-                </li>
-              ))}
-            </ul>
+            {ad.moderationHistory.length > 0 && (
+              <ul className={style['history-list']}>
+                {ad.moderationHistory.map((moderation) => (
+                  <li key={moderation.id}>
+                    <ModerationItem moderation={moderation} />
+                  </li>
+                ))}
+              </ul>
+            )}
+            {ad.moderationHistory.length <= 0 && <p>Никто не модерировал это объявление</p>}
           </section>
         </div>
         <p className={style.description}>{ad.description}</p>
