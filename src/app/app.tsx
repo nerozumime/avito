@@ -6,7 +6,7 @@ import Modal from '../components/modal/modal.tsx'
 
 export function App() {
   return (
-    <div className={'main'}>
+    <>
       <Modal />
       <Routes>
         <Route index element={<AdsList />} />
@@ -14,6 +14,6 @@ export function App() {
         <Route path={'item/:id'} element={<DetailedAd />} />
         <Route path={'stats'} element={<ModeratorStats />} />
       </Routes>
-    </div>
+    </>
   )
 }
