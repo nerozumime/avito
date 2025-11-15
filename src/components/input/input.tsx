@@ -10,9 +10,10 @@ interface InputProps {
   value: string
   label: string
   type: 'radio' | 'checkbox'
+  checkedFill: string
 }
 
-export function Input({ checked, onChange, name, value, label, type }: InputProps) {
+export function Input({ checked, onChange, name, value, label, type, checkedFill }: InputProps) {
   return (
     <label className={styles['label-ui']}>
       <input
@@ -24,7 +25,7 @@ export function Input({ checked, onChange, name, value, label, type }: InputProp
         tabIndex={-1}
         value={value}
       />
-      <CheckboxIcon checked={checked} type={type} styleClass={styles.checkbox} />
+      <CheckboxIcon checked={checked} type={type} styleClass={styles.checkbox} checkedFill={checkedFill} />
       <span className={styles['span-ui']}>{label}</span>
     </label>
   )
