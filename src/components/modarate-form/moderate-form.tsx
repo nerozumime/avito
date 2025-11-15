@@ -57,18 +57,27 @@ export function ModerateForm({ status, callback, adId }: ModerateFormProps) {
     }
   }
 
+  function handleClose() {
+    dispatch(closeModal())
+  }
+
   return (
     <form onSubmit={handleSubmit} className={style.form}>
       <span className={style.title}>{isReject ? 'Отклонение' : 'На доработку'}</span>
 
-      <select value={form.quickReason} name={'quickReason'} onChange={handleChange}>
-        <option value={'Запрещенный товар'}>Запрещенный товар</option>
-        <option value={'Неверная категория'}>Неверная категория</option>
-        <option value={'Некорректное описание'}>Некорректное описание</option>
-        <option value={'Проблемы с фото'}>Проблемы с фото</option>
-        <option value={'Подозрение на мошенничество'}>Подозрение на мошенничество</option>
-        <option value={'Другое'}>Другое</option>
-      </select>
+      <div>
+        <label className={style['select-label']} htmlFor={'quick-reason'}>
+          Быстрый шаблон причины
+        </label>
+        <select value={form.quickReason} name={'quickReason'} onChange={handleChange} id={'quick-reason'}>
+          <option value={'Запрещенный товар'}>Запрещенный товар</option>
+          <option value={'Неверная категория'}>Неверная категория</option>
+          <option value={'Некорректное описание'}>Некорректное описание</option>
+          <option value={'Проблемы с фото'}>Проблемы с фото</option>
+          <option value={'Подозрение на мошенничество'}>Подозрение на мошенничество</option>
+          <option value={'Другое'}>Другое</option>
+        </select>
+      </div>
 
       <input
         type='text'
@@ -88,9 +97,15 @@ export function ModerateForm({ status, callback, adId }: ModerateFormProps) {
         className={clsx(style.input, style.textarea)}
       />
 
-      <Button type='submit' text='Отправить' styleClass={style.submit} disableClass={style['submit-disabled']} />
+      <Button
+        type='submit'
+        text='Отправить'
+        styleClass={style.submit}
+        disableClass={style['submit-disabled']}
+        disabled={form.reason === '' && form.quickReason === 'Другое'}
+      />
       {error && <div className={style.error}>{`* ${error}`}</div>}
-      {isReject && <Button icon={<CloseIcon />} styleClass={style.close} onClick={() => dispatch(closeModal())} />}
+      <Button icon={<CloseIcon />} styleClass={style.close} onClick={handleClose} />
     </form>
   )
 }
