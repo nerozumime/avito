@@ -11,6 +11,10 @@ export const STATUS_COLOR_MAP = {
     backgroundColor: '#f3c34a',
     borderColor: '#c88b46',
   },
+  pending: {
+    backgroundColor: '#b1b1b1',
+    borderColor: '#b1b1b1',
+  },
 }
 
 export const AD_STATUS = {
