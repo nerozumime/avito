@@ -29,7 +29,6 @@ export function AdsList() {
 
   useEffect(() => {
     document.addEventListener('keydown', handleFocusSearch)
-    console.log('handleFocus')
   }, [])
 
   function handleFocusSearch(e: KeyboardEvent) {

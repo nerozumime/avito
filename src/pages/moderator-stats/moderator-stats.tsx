@@ -51,10 +51,6 @@ export function ModeratorStats() {
     fetchStats()
   }, [fetchStats])
 
-  useEffect(() => {
-    console.log(activity)
-  }, [activity])
-
   function handleSetFilter(e: ChangeEvent<HTMLInputElement>) {
     setPeriod(e.target.value as TStatsPeriod)
   }
