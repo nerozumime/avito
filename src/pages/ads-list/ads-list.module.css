@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .list {
@@ -10,4 +11,18 @@
   gap: 1rem;
   justify-content: center;
   margin-block-end: 1rem;
+}
+
+.stats-nav-button {
+  background-color: var(--accent-blue-color);
+  border: none;
+  border-radius: 0.4rem;
+  bottom: 1rem;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  right: 1rem;
+}
+
+.stats-nav-button:hover {
+  filter: brightness(0.9);
 }
