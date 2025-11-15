@@ -11,15 +11,21 @@ import { BarChart } from '../../components/bar-chart/bar-chart.tsx'
 import { CircleChart } from '../../components/circle-chart/circle-chart.tsx'
 import { PERIODS } from '../../constants/constants.ts'
 import { DoughnutChart } from '../../components/doughnut-chart/doughnut-chart.tsx'
+import { Input } from '../../components/input/input.tsx'
+import style from './moderator-stats.module.css'
+import { NoData } from '../../components/no-data/no-data.tsx'
 
 export function ModeratorStats() {
   const [stats, setStats] = useState<IModeratorSummary | null>(null)
   const [activity, setActivity] = useState<IModeratorActivity[]>([])
-  const [decisions, setDecisions] = useState<IModeratorDecisions | null>()
-  const [categories, setCategories] = useState<TChartsCategories>()
+  const [decisions, setDecisions] = useState<IModeratorDecisions | null>(null)
+  const [categories, setCategories] = useState<TChartsCategories | null>(null)
   const [period, setPeriod] = useState<TStatsPeriod>('week')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const hasAnyDiagram =
+    decisions !== null && (decisions.approved > 0 || decisions.rejected > 0 || decisions.requestChanges > 0)
+
   const fetchStats = useCallback(async () => {
     try {
       setLoading(true)
@@ -45,6 +51,10 @@ export function ModeratorStats() {
     fetchStats()
   }, [fetchStats])
 
+  useEffect(() => {
+    console.log(activity)
+  }, [activity])
+
   function handleSetFilter(e: ChangeEvent<HTMLInputElement>) {
     setPeriod(e.target.value as TStatsPeriod)
   }
@@ -57,44 +67,53 @@ export function ModeratorStats() {
   }
   if (!stats) return null
   return (
-    <div>
-      <section>
+    <div className={style['stats-page']}>
+      <section className={style.period}>
         <span>Период:</span>
-        <label>
-          <input
+        <fieldset className={style.filter}>
+          <Input
             type={'radio'}
             name={'period'}
             value={'today'}
             onChange={handleSetFilter}
             checked={period === 'today'}
+            label={'Сегодня'}
           />
-          Сегодня
-        </label>
-        <label>
-          <input type={'radio'} name={'period'} value={'week'} onChange={handleSetFilter} checked={period === 'week'} />
-          7д
-        </label>
-        <label>
-          <input
+
+          <Input
+            type={'radio'}
+            name={'period'}
+            value={'week'}
+            onChange={handleSetFilter}
+            checked={period === 'week'}
+            label={'7д'}
+          />
+
+          <Input
             type={'radio'}
             name={'period'}
             value={'month'}
             onChange={handleSetFilter}
             checked={period === 'month'}
+            label={'30д'}
           />
-          30д
-        </label>
+        </fieldset>
       </section>
-      <section>
-        <div>{`Проверено ${stats.totalReviewed}`}</div>
-        <div>{`Одобрено ${stats.approvedPercentage.toFixed()}%`}</div>
-        <div>{`Отклонено ${stats.rejectedPercentage.toFixed()}%`}</div>
-        <div>{`Ср. время ${(stats.averageReviewTime / (1000 * 60)).toFixed(1)} мин`}</div>
-      </section>
+      <ul className={style.stats}>
+        <li className={style.box}>{`Проверено: ${stats.totalReviewed}`}</li>
+        <li className={style.box}>{`Одобрено: ${stats.approvedPercentage.toFixed()}%`}</li>
+        <li className={style.box}>{`Отклонено: ${stats.rejectedPercentage.toFixed()}%`}</li>
+        <li className={style.box}>{`Ср. время: ${(stats.averageReviewTime / (1000 * 60)).toFixed(1)} мин`}</li>
+      </ul>
 
-      {activity.length > 0 && <BarChart data={activity} period={PERIODS[period]} />}
-      {decisions && <CircleChart data={decisions} />}
-      {categories && <DoughnutChart data={categories} />}
+      {hasAnyDiagram && (
+        <section className={style.diagrams}>
+          {activity.length > 0 && <BarChart data={activity} period={PERIODS[period]} />}
+          {decisions && <CircleChart data={decisions} />}
+          {categories && <DoughnutChart data={categories} />}
+        </section>
+      )}
+      {hasAnyDiagram && <NoData />}
     </div>
   )
 }
