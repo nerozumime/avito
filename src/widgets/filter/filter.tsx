@@ -98,7 +98,7 @@ export function Filter({
               value={filters.minPrice ?? ''}
               onChange={handleFilterChange}
               className={style.input}
-              placeholder={'Мин. цена в ₽'}
+              placeholder={'От ₽'}
             />
           </div>
           <div>
@@ -112,7 +112,7 @@ export function Filter({
               value={filters.maxPrice ?? ''}
               onChange={handleFilterChange}
               className={style.input}
-              placeholder={'Макс. цена в ₽'}
+              placeholder={'До ₽'}
             />
           </div>
         </fieldset>

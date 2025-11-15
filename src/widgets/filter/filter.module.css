@@ -44,7 +44,12 @@
   appearance: none;
   background-color: #aaaaa9;
   border: none;
-  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  padding: 0.5rem 0.5rem;
+}
+
+.input::placeholder {
+  font-size: 14px;
 }
 
 .label {
