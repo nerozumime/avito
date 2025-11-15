@@ -1,0 +1,65 @@
+.filter {
+  background-color: var(--filter-background-color);
+  border-radius: 0.5rem;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-block-end: 1rem;
+  max-width: max-content;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.statuses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.prices div:not(:last-child) {
+  margin-block-end: 0.5rem;
+}
+
+.input:focus {
+  border: none;
+  outline: none;
+}
+
+.input:focus-visible {
+  border-radius: 5px;
+  outline: 2px dashed var(--accent-blue-color);
+}
+
+.input {
+  appearance: none;
+  background-color: #aaaaa9;
+  border: none;
+  padding: 0.2rem 0.5rem;
+}
+
+.label {
+  margin-inline-end: 0.5rem;
+}
+
+.reset {
+  background: none;
+  border:none;
+  color: var(--accent-blue-color);
+  font-size: 1rem;
+  max-width: 160px;
+}
+
+.reset:hover {
+  color: var(--accent-red-color);
+}
+
