@@ -12,6 +12,7 @@
 }
 
 .section-gallery-history {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -71,6 +72,19 @@
   background: #f1d69c;
   border-radius: 12px;
   padding: 0.5rem;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.history-title {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-block-end: 0.5rem;
 }
 
 .seller-info {

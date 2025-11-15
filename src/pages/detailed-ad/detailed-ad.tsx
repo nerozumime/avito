@@ -4,7 +4,6 @@ import { Gallery } from '../../widgets/gallery/gallery.tsx'
 import { useCallback, useEffect, useState } from 'react'
 import type { IAd, TAdStatus } from '../../types/ads-api.ts'
 import { AdsApi } from '../../api/ads-api/ads-api.ts'
-import { AD_STATUS, STATUS_COLOR_MAP } from '../../constants/constants.ts'
 import { Button } from '../../widgets/button/button.tsx'
 import { useAppDispatch } from '../../services/store/store.ts'
 import { openModal } from '../../services/slices/modalSlice.ts'
@@ -14,6 +13,8 @@ import { BackArrowIcon } from '../../components/icons/back-arrow-icon/back-arrow
 import clsx from 'clsx'
 import { ApproveIcon } from '../../components/icons/approve-icon/approve-icon.tsx'
 import { CloseIcon } from '../../components/icons/close-icon/close-icon.tsx'
+import { ModerationItem } from '../../components/moderation-item/moderation-item.tsx'
+import { getSellerActivityData } from '../../utils/get-seller-activity.ts'
 
 export function DetailedAd() {
   const navigate = useNavigate()
@@ -24,7 +25,6 @@ export function DetailedAd() {
   const [ad, setAd] = useState<IAd | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
-
   function handleReturnToList() {
     navigate('/list')
   }
@@ -110,69 +110,53 @@ export function DetailedAd() {
   if (isLoading) return <div>Идет загрузка пользователя...</div>
   if (error) return <div>{error}</div>
   if (!id) return null
-
+  if (!ad) return <div>По id {id} объявление не найдено</div>
+  const sellerYearsActivity = new Date().getFullYear() - new Date(ad.seller.registeredAt).getFullYear()
   return (
     <main className={style.main}>
       <div className={style['detailed-wrapper']}>
         <div className={style['section-gallery-history']}>
-          <Gallery images={Array(3).fill('/image-placeholder.jpeg')} />
+          <Gallery images={Array(5).fill('/image-placeholder.jpeg')} />
           <section className={style['moderation-history']}>
-            <span>История модерации</span>
-            <ul>
-              {ad?.moderationHistory.map((moderation) => (
+            <span className={style['history-title']}>История модерации:</span>
+            <ul className={style['history-list']}>
+              {ad.moderationHistory.map((moderation) => (
                 <li key={moderation.id}>
-                  {`Модератор: ${moderation.moderatorName} ${new Date(moderation.timestamp).toLocaleDateString('ru-RU')}
-                в ${new Date(moderation.timestamp).getHours()}:${new Date(moderation.timestamp).getMinutes()}
-            с исходом `}{' '}
-                  <span style={{ backgroundColor: STATUS_COLOR_MAP[moderation.action].backgroundColor }}>
-                    {AD_STATUS[moderation.action]?.label}
-                  </span>
-                  {moderation.action !== 'approved' && (
-                    <>
-                      <br />
-                      {`По причине: ${moderation.reason}`}
-                    </>
-                  )}
-                  {moderation.comment && (
-                    <>
-                      <br />
-                      {`Комментарий: ${moderation.comment}`}
-                    </>
-                  )}
+                  <ModerationItem moderation={moderation} />
                 </li>
               ))}
             </ul>
           </section>
         </div>
-        <p className={style.description}>{ad?.description}</p>
+        <p className={style.description}>{ad.description}</p>
         <table className={style.features}>
           <caption>Характеристики</caption>
           <tbody>
             <tr>
               <td>Гарантия</td>
-              <td>{ad?.characteristics.Гарантия}</td>
+              <td>{ad.characteristics.Гарантия}</td>
             </tr>
             <tr>
               <td>Модель</td>
-              <td>{ad?.characteristics.Модель}</td>
+              <td>{ad.characteristics.Модель}</td>
             </tr>
             <tr>
               <td>Цвет</td>
-              <td>{ad?.characteristics.Цвет}</td>
+              <td>{ad.characteristics.Цвет}</td>
             </tr>
             <tr>
               <td>Производитель</td>
-              <td>{ad?.characteristics.Производитель}</td>
+              <td>{ad.characteristics.Производитель}</td>
             </tr>
             <tr>
               <td>Состояние</td>
-              <td>{ad?.characteristics.Состояние}</td>
+              <td>{ad.characteristics.Состояние}</td>
             </tr>
           </tbody>
         </table>
         <section className={style['seller-info']}>
-          <span>{`Продавец: ${ad?.seller.name} | Рейтинг: ${ad?.seller.rating} `}</span>
-          <span>{`Объявлений: ${ad?.seller.totalAds} | На сайте с: ${ad?.seller.registeredAt.split('T')[0]}`}</span>
+          <span>{`Продавец: ${ad.seller.name} | Рейтинг: ${ad.seller.rating} `}</span>
+          <span>{`Объявлений: ${ad.seller.totalAds} | На сайте: ${getSellerActivityData(sellerYearsActivity)}`}</span>
         </section>
         <menu>
           <ul className={style['menu-list']}>
