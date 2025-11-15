@@ -5,6 +5,8 @@ import { Paginator } from '../../components/paginator/paginator.tsx'
 import { PreviewAd } from '../../components/preview-ad/preview-ad.tsx'
 import style from './ads-list.module.css'
 import { Filter } from '../../widgets/filter/filter.tsx'
+import { Button } from '../../widgets/button/button.tsx'
+import { useNavigate } from 'react-router'
 
 export function AdsList() {
   const [ads, setAds] = useState<IAd[]>([])
@@ -14,6 +16,7 @@ export function AdsList() {
   const [page, setPage] = useState<number>(1)
   const timer = useRef<number | null>(null)
   const searchRef = useRef<HTMLInputElement>(null)
+  const navigate = useNavigate()
   const [filters, setFilters] = useState<IFilter>({
     status: [],
     categoryId: null,
@@ -26,6 +29,7 @@ export function AdsList() {
 
   useEffect(() => {
     document.addEventListener('keydown', handleFocusSearch)
+    console.log('handleFocus')
   }, [])
 
   function handleFocusSearch(e: KeyboardEvent) {
@@ -64,7 +68,6 @@ export function AdsList() {
     timer.current = setTimeout(async () => {
       fetchAds(1, filters)
     }, 700)
-    console.log(filters)
     return () => {
       timer.current && clearTimeout(timer.current)
     }
@@ -130,7 +133,7 @@ export function AdsList() {
   }
 
   return (
-    <div className={style['ads-list']}>
+    <main className={style['ads-list']}>
       <Filter
         filters={filters}
         searchRef={searchRef}
@@ -158,6 +161,8 @@ export function AdsList() {
         </>
       )}
       {isLoading && <div>Загрузка...</div>}
-    </div>
+      {/*Кнопка для удобства навигации и тестирования */}
+      <Button onClick={() => navigate('/stats')} text={'К статистике'} styleClass={style['stats-nav-button']} />
+    </main>
   )
 }

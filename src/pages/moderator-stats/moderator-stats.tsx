@@ -67,7 +67,7 @@ export function ModeratorStats() {
   }
   if (!stats) return null
   return (
-    <div className={style['stats-page']}>
+    <main className={style['stats-page']}>
       <section className={style.period}>
         <span>Период:</span>
         <fieldset className={style.filter}>
@@ -117,6 +117,6 @@ export function ModeratorStats() {
         </section>
       )}
       {!hasAnyDiagram && <NoData />}
-    </div>
+    </main>
   )
 }
