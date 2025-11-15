@@ -7,12 +7,12 @@
   user-select: none;
 }
 
-svg:focus-visible{
-  outline:none;
+svg:focus-visible {
+  outline: none;
 }
 
-svg:focus-visible path{
-  stroke: var(--background-color)
+svg:focus-visible path {
+  stroke: var(--background-color);
 }
 
 .label-ui:hover > * {

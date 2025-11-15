@@ -1,0 +1,30 @@
+:root {
+  --filter-background-color: #ebeae8;
+  --radius-base: 12px;
+  --accent-blue-color: #00aaff;
+  --stats-box-shadow: #018cd3;
+  --alert-color: red;
+  --background-color: white;
+  --general-color: black;
+  --icon-color: black;
+  --font-family-general: "Stack-Sans";
+  --font-family-title: sans-serif;
+  --accent-green-color: #42e17c;
+  --accent-purple-color: #965eeb;
+  --accent-red-color: #ff4053;
+  --stats-text-color: #f6f5f5;
+}
+
+body.light-theme {
+  --accent-color: #3abaff;
+  --alert-color: red;
+  --background-color: white;
+  --general-color: #232323;
+}
+
+body.dark-theme {
+  --accent-color: #faa5a5;
+  --alert-color: red;
+  --background-color: rgb(35 39 47 / 1);
+  --general-color: white;
+}

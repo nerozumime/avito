@@ -35,7 +35,7 @@ export function PreviewAd({ ad }: PreviewAdProps) {
           </div>
         )}
       </section>
-      <Button onClick={handleNavigate} styleClass={style.button} text={'Открыть'} />
+      <Button onClick={handleNavigate} styleClass={'button-primary'} text={'Открыть'} />
     </article>
   )
 }
