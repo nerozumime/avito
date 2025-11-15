@@ -45,6 +45,7 @@
   background-color: #f2f1f0;
   border: none;
   border-radius: 6px;
+  color: var(--text-color);
   padding: 0.5rem 0.5rem;
 }
 
