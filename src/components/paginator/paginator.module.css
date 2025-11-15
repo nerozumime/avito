@@ -15,13 +15,14 @@
 .button {
   background: var(--accent-color-type-one);
   border: none;
+  cursor: pointer;
 }
 
 .button svg path {
   transition: translate 0.1s ease;
 }
 
-.button:active svg path {
+.button:hover svg path {
   transition: translate 0.1s ease;
   translate: 0 0.2rem;
 }
