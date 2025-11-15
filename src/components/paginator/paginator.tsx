@@ -1,5 +1,6 @@
 import { Button } from '../../widgets/button/button.tsx'
 import { ArrowIcon } from '../icons/arrow-icon/arrow-icon.tsx'
+import style from './paginator.module.css'
 
 interface PaginatorProps {
   onNextPageClick: () => void
@@ -24,16 +25,18 @@ export const Paginator = (props: PaginatorProps) => {
   }
 
   return (
-    <div>
-      <div>
+    <div className={style.paginator}>
+      <div className={style.main}>
         <Button
           type='button'
           onClick={handlePrevPageClick}
           disabled={isLeftButtonDisabled}
           icon={<ArrowIcon rotateAngle={90} />}
+          styleClass={style.button}
+          disableClass={style['disabled-button']}
         />
 
-        <span>
+        <span className={style['page-counter']}>
           {paginator.currentPage} / {paginator.totalPages}
         </span>
 
@@ -42,9 +45,11 @@ export const Paginator = (props: PaginatorProps) => {
           onClick={handleNextPageClick}
           disabled={isRightButtonDisabled}
           icon={<ArrowIcon rotateAngle={-90} />}
+          styleClass={style.button}
+          disableClass={style['disabled-button']}
         />
       </div>
-      <div>{`Всего: ${paginator.totalItems} объявлений`}</div>
+      <span className={style['ads-counter']}>{`Всего: ${paginator.totalItems} объявлений`}</span>
     </div>
   )
 }
