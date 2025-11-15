@@ -130,7 +130,7 @@ export function AdsList() {
   }
 
   return (
-    <div>
+    <div className={style['ads-list']}>
       <Filter
         filters={filters}
         searchRef={searchRef}
