@@ -1,32 +1,3 @@
-export const AD_STATUS = {
-  pending: {
-    color: 'grey',
-    label: 'На модерации',
-  },
-  approved: {
-    color: 'green',
-    label: 'Одобрено',
-  },
-  rejected: {
-    color: 'red',
-    label: 'Отклонено',
-  },
-  requestChanges: {
-    label: 'На доработке',
-    color: 'yellow',
-  },
-  draft: {
-    label: 'На доработке',
-    color: 'orange',
-  },
-} as const
-
-export const PERIODS = {
-  today: 'сегодня',
-  week: '7 дней',
-  month: '30 дней',
-}
-
 export const STATUS_COLOR_MAP = {
   approved: {
     backgroundColor: '#04e061',
@@ -40,6 +11,35 @@ export const STATUS_COLOR_MAP = {
     backgroundColor: '#f3c34a',
     borderColor: '#c88b46',
   },
+}
+
+export const AD_STATUS = {
+  pending: {
+    color: STATUS_COLOR_MAP.requestChanges.backgroundColor,
+    label: 'На модерации',
+  },
+  approved: {
+    color: STATUS_COLOR_MAP.approved.backgroundColor,
+    label: 'Одобрено',
+  },
+  rejected: {
+    color: STATUS_COLOR_MAP.rejected.backgroundColor,
+    label: 'Отклонено',
+  },
+  requestChanges: {
+    label: 'На доработке',
+    color: STATUS_COLOR_MAP.requestChanges.backgroundColor,
+  },
+  draft: {
+    label: 'На доработке',
+    color: STATUS_COLOR_MAP.requestChanges.backgroundColor,
+  },
+} as const
+
+export const PERIODS = {
+  today: 'сегодня',
+  week: '7 дней',
+  month: '30 дней',
 }
 
 export const CATEGORY_COLOR_MAP = {
