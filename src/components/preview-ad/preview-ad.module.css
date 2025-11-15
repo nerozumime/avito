@@ -1,25 +1,62 @@
 .card {
-  align-items: center;
+  border: 1px solid #000;
+  border-radius: 12px;
   display: flex;
-  gap: 1rem;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.2rem;
+  justify-content: flex-end;
+  max-inline-size: 300px;
   padding: 0.5rem;
+  position: relative;
 }
 
 .image {
   aspect-ratio: 1;
-  height: 5rem;
+  max-height: 300px;
+  pointer-events: none;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .info {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  overflow: hidden;
 }
 
-.statuses {
+.info-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  text-align: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.priority {
+  left: 0.5rem;
+  position: absolute;
+  top: 0.5rem;
+}
+
+.status {
+  min-width: max-content;
+}
+
+.category {
+  border-radius: 0.4rem;
+  color: #fff;
+  display: block;
+  max-width: max-content;
+  padding: 0.2rem 0.5rem;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}
+
+.open-button {
+  justify-self: end;
+  width: 100%;
 }
