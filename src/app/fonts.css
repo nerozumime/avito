@@ -1,0 +1,7 @@
+@font-face {
+  font-display: swap;
+  font-family: "Stack-Sans";
+  font-style: normal;
+  font-weight: 200 700;
+  src: local('Stack-Sans'), url('../../public/StackSansText-VariableFont_wght.ttf') format('truetype');
+}
