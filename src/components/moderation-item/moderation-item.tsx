@@ -10,7 +10,7 @@ export function ModerationItem({ moderation }: ModerationItemProps) {
   return (
     <span className={style.item}>
       {`Модератор: ${moderation.moderatorName} ${data.toLocaleDateString('ru-RU')}
-                в ${data.getHours()}:${data.getMinutes()}`}
+                в ${data.getHours()}:${data.getMinutes()} `}
       <span className={style.status} style={{ backgroundColor: STATUS_COLOR_MAP[moderation.action].backgroundColor }}>
         {AD_STATUS[moderation.action]?.label}
       </span>

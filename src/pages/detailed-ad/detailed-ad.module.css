@@ -43,6 +43,7 @@
   border: none;
   border-radius: 0.4rem;
   padding: 0.5rem 1rem;
+  transition: 0.2s ease;
 }
 
 .button-request-changes {
@@ -64,6 +65,10 @@
 
 .button-approve {
   background-color: var(--accent-color-type-four);
+}
+
+.button:hover svg{
+  scale: 1.1;
 }
 
 .button-reject {
