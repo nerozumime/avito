@@ -29,10 +29,8 @@
   filter: brightness(0.9);
 }
 
-
-
 @media (max-width: 400px) {
-  .stats-nav-button{
+  .stats-nav-button {
     max-width: 100px;
     right: 0;
   }

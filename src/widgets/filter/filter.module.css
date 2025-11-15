@@ -58,7 +58,7 @@
 
 .reset {
   background: none;
-  border:none;
+  border: none;
   color: var(--accent-color-type-one);
   font-size: 1rem;
   max-width: 160px;
@@ -67,4 +67,3 @@
 .reset:hover {
   color: var(--accent-color-type-two);
 }
-

@@ -9,7 +9,7 @@
   --accent-color-type-one: #00aaff;
   --accent-color-type-three: #965eeb;
   --accent-color-type-two: #ff4053;
-  --font-family-general: "Stack-Sans";
+  --font-family-general: 'Stack-Sans';
   --stats-text-color: #f6f5f5;
   --accent-yellow-color: #f3c34a;
 }

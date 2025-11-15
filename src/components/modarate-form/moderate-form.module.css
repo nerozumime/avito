@@ -39,7 +39,8 @@
   padding: 2.5rem 1rem;
   position: relative;
   text-align: center;
-  transition: background-color 0.2s ease;width: 90vw;
+  transition: background-color 0.2s ease;
+  width: 90vw;
 }
 
 .submit,
@@ -91,7 +92,7 @@
   filter: brightness(90%);
 }
 
-.close:hover svg path{
+.close:hover svg path {
   fill: var(--accent-color-type-two);
 }
 

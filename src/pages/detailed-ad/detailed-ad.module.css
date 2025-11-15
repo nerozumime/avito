@@ -19,14 +19,15 @@
   justify-content: center;
 }
 
-.menu-list{
+.menu-list {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
 }
 
-.nav-list, .nav-buttons {
+.nav-list,
+.nav-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -37,7 +38,8 @@
   margin-block-end: 1rem;
 }
 
-.button, .button {
+.button,
+.button {
   border: none;
   border-radius: 0.4rem;
   padding: 0.5rem 1rem;
@@ -68,7 +70,7 @@
   background-color: var(--accent-color-type-two);
 }
 
-.moderation-history{
+.moderation-history {
   background: #f1d69c;
   border-radius: 12px;
   padding: 0.5rem;
@@ -124,7 +126,6 @@
 .features tr:not(:last-child) {
   border-bottom: 1px dashed #fff;
 }
-
 
 .features caption {
   color: black;

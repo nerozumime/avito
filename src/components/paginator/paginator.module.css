@@ -21,7 +21,7 @@
   transition: translate 0.1s ease;
 }
 
-.button:active svg path{
+.button:active svg path {
   transition: translate 0.1s ease;
   translate: 0 0.2rem;
 }
@@ -36,9 +36,7 @@
 }
 
 .ads-counter {
-
 }
 
 .page-counter {
-
 }

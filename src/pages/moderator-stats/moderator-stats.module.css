@@ -35,7 +35,7 @@
   border-radius: 1rem;
   box-shadow: 0 0 10px 2px var(--stats-box-shadow) inset;
   color: var(--stats-text-color);
-display: flex;
+  display: flex;
   font-size: 1rem;
   font-weight: bold;
   justify-content: center;
