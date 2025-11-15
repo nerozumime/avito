@@ -45,11 +45,13 @@
 }
 
 .button-left {
+  background: #fff;
   box-shadow: -1px 1px 0 var(--general-color);
   left: 5%;
 }
 
 .button-right {
+  background: #fff;
   box-shadow: 1px 1px 0 var(--general-color);
   right: 5%;
 }

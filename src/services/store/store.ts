@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux'
 import { modalReducer } from '../slices/modalSlice.ts'
+import { themeReducer } from '../slices/themeSlice.ts'
 
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
+    theme: themeReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

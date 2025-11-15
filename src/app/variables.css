@@ -2,6 +2,8 @@
   --filter-background-color: #ebeae8;
   --radius-base: 12px;
   --stats-box-shadow: #018cd3;
+  --theme-button-color: black;
+  --alert-color: #f33232;
   --background-color: white;
   --general-color: black;
   --icon-color: black;
@@ -11,11 +13,16 @@
   --accent-color-type-two: #ff4053;
   --font-family-general: 'Stack-Sans';
   --stats-text-color: #f6f5f5;
-  --accent-yellow-color: #f3c34a;
 }
 
 body.light-theme {
+  --theme-button-color: black;
+  --background-color: white;
+  --text-color: black;
 }
 
 body.dark-theme {
+  --theme-button-color: white;
+  --background-color: #2c2b2b;
+  --text-color: #f4f4f4;
 }

@@ -32,3 +32,22 @@ body {
   margin: 0 auto;
   max-width: 1440px;
 }
+
+.theme-button {
+  background: var(--background-color);
+  border: none;
+  left: 1rem;
+  position: fixed;
+}
+
+@media(width > 415px){
+  .theme-button {
+    bottom: 1rem;
+  }
+}
+
+@media(width <= 415px){
+  .theme-button {
+    bottom: 1rem;
+  }
+}
