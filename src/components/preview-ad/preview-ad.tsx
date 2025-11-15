@@ -34,7 +34,7 @@ export function PreviewAd({ ad }: PreviewAdProps) {
         <section className={style.info}>
           <span className={style.title}>{ad.title.split(':')[1]}</span>
           <span>{ad.price} ₽</span>
-          <span>{`Создано: ${ad.createdAt.split('T')[0]}`}</span>
+          <span>{`Создано: ${new Date(ad.createdAt).toLocaleDateString('ru-RU')}`}</span>
         </section>
         <span className={style.status} style={{ color: status?.color }}>
           {status?.label}
