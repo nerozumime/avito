@@ -13,3 +13,7 @@
 .flex-reverse {
   flex-direction: row-reverse;
 }
+
+button:disabled {
+  cursor: not-allowed;
+}
