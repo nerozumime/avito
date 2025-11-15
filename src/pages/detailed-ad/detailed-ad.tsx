@@ -4,11 +4,16 @@ import { Gallery } from '../../widgets/gallery/gallery.tsx'
 import { useCallback, useEffect, useState } from 'react'
 import type { IAd, TAdStatus } from '../../types/ads-api.ts'
 import { AdsApi } from '../../api/ads-api/ads-api.ts'
-import { AD_STATUS } from '../../constants/constants.ts'
+import { AD_STATUS, STATUS_COLOR_MAP } from '../../constants/constants.ts'
 import { Button } from '../../widgets/button/button.tsx'
 import { useAppDispatch } from '../../services/store/store.ts'
 import { openModal } from '../../services/slices/modalSlice.ts'
 import { ModerateForm } from '../../components/modarate-form/moderate-form.tsx'
+import style from './detailed-ad.module.css'
+import { BackArrowIcon } from '../../components/icons/back-arrow-icon/back-arrow-icon.tsx'
+import clsx from 'clsx'
+import { ApproveIcon } from '../../components/icons/approve-icon/approve-icon.tsx'
+import { CloseIcon } from '../../components/icons/close-icon/close-icon.tsx'
 
 export function DetailedAd() {
   const navigate = useNavigate()
@@ -21,6 +26,10 @@ export function DetailedAd() {
   const [error, setError] = useState<string | null>(null)
 
   function handleReturnToList() {
+    navigate('/list')
+  }
+
+  function returnFromInvalidAdPage() {
     navigate(from)
   }
 
@@ -62,7 +71,7 @@ export function DetailedAd() {
       setAd(response)
     } catch (_) {
       setError('Ошибка получения объявления по id - ' + id)
-      handleReturnToList() // Временное решение для невалидного перемещения на следующую страницу
+      returnFromInvalidAdPage() // Временное решение для невалидного перемещения на следующую страницу
       /* По хорошему, вынести пагинатор в redux и оттуда брать значение максимального элемента
        * и валидировать при попытке преехода на следующую страницу */
     } finally {
@@ -103,12 +112,41 @@ export function DetailedAd() {
   if (!id) return null
 
   return (
-    <div>
-      <Gallery images={Array(3).fill('/image-placeholder.jpeg')} />
-      <div>{ad?.description}</div>
-      <section>
-        <span>Характеристики</span>
-        <table>
+    <main className={style.main}>
+      <div className={style['detailed-wrapper']}>
+        <div className={style['section-gallery-history']}>
+          <Gallery images={Array(3).fill('/image-placeholder.jpeg')} />
+          <section className={style['moderation-history']}>
+            <span>История модерации</span>
+            <ul>
+              {ad?.moderationHistory.map((moderation) => (
+                <li key={moderation.id}>
+                  {`Модератор: ${moderation.moderatorName} ${new Date(moderation.timestamp).toLocaleDateString('ru-RU')}
+                в ${new Date(moderation.timestamp).getHours()}:${new Date(moderation.timestamp).getMinutes()}
+            с исходом `}{' '}
+                  <span style={{ backgroundColor: STATUS_COLOR_MAP[moderation.action].backgroundColor }}>
+                    {AD_STATUS[moderation.action]?.label}
+                  </span>
+                  {moderation.action !== 'approved' && (
+                    <>
+                      <br />
+                      {`По причине: ${moderation.reason}`}
+                    </>
+                  )}
+                  {moderation.comment && (
+                    <>
+                      <br />
+                      {`Комментарий: ${moderation.comment}`}
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+        <p className={style.description}>{ad?.description}</p>
+        <table className={style.features}>
+          <caption>Характеристики</caption>
           <tbody>
             <tr>
               <td>Гарантия</td>
@@ -132,53 +170,63 @@ export function DetailedAd() {
             </tr>
           </tbody>
         </table>
-      </section>
-      <section>
-        <span>
-          Продавец: {ad?.seller.name} {ad?.seller.rating} {`${ad?.seller.totalAds} объявлений`}{' '}
-          {`На сайте с: ${ad?.seller.registeredAt.split('T')[0]}`}
-        </span>
-      </section>
-      <section>
-        <span>История модерации</span>
-        <div>
-          {ad?.moderationHistory.map((moderation) => (
-            <div key={moderation.id}>
-              {`Проверил ${moderation.moderatorName} ${moderation.timestamp}
-            с исходом ${AD_STATUS[moderation.action]?.label}`}
-              {moderation.action !== 'approved' && ` по причине ${moderation.reason}`}
-              <br />
-              {moderation.comment && ` Комментарий: ${moderation.comment}`}
-            </div>
-          ))}
+        <section className={style['seller-info']}>
+          <span>{`Продавец: ${ad?.seller.name} | Рейтинг: ${ad?.seller.rating} `}</span>
+          <span>{`Объявлений: ${ad?.seller.totalAds} | На сайте с: ${ad?.seller.registeredAt.split('T')[0]}`}</span>
+        </section>
+        <menu>
+          <ul className={style['menu-list']}>
+            <li>
+              <Button
+                text={'Одобрить'}
+                onClick={handleApprove}
+                styleClass={clsx(style['button-approve'], style.button)}
+                icon={<ApproveIcon />}
+                gap={8}
+                iconPosition={'left'}
+              />
+            </li>
+            <li>
+              <Button
+                text={'Отклонить'}
+                onClick={() => handleModerate('rejected')}
+                styleClass={clsx(style['button-reject'], style.button)}
+                iconPosition={'left'}
+                gap={8}
+                icon={<CloseIcon fill={'#fff'} />}
+              />
+            </li>
+            <li>
+              <Button
+                text={'Доработка'}
+                onClick={() => handleModerate('requestChanges')}
+                styleClass={clsx(style['button-request-changes'], style.button)}
+                icon={<BackArrowIcon />}
+                gap={8}
+                iconPosition={'left'}
+              />
+            </li>
+          </ul>
+        </menu>
+      </div>
+      <nav className={style['nav-list']}>
+        <Button onClick={handleReturnToList} text={'К списку'} styleClass={'button-primary'} />
+        <div className={style['nav-buttons']}>
+          <Button
+            text={'Пред'}
+            onClick={handlePrevAd}
+            disabled={parseInt(id) <= 1}
+            styleClass={'button-primary'}
+            disableClass={style['disabled-button']}
+          />
+          <Button
+            text={'След'}
+            onClick={handleNextAd}
+            styleClass={'button-primary'}
+            disableClass={style['disabled-button']}
+          />
         </div>
-      </section>
-      <menu>
-        <ul>
-          <li>
-            <Button text={'Одобрить'} onClick={handleApprove} />
-          </li>
-          <li>
-            <Button text={'Отклонить'} onClick={() => handleModerate('rejected')} />
-          </li>
-          <li>
-            <Button text={'Доработка'} onClick={() => handleModerate('requestChanges')} />
-          </li>
-        </ul>
-      </menu>
-      <nav>
-        <ul>
-          <li>
-            <Button onClick={handleReturnToList} text={'К списку'} />
-          </li>
-          <li>
-            <Button text={'Пред'} onClick={handlePrevAd} disabled={parseInt(id) <= 1} />
-          </li>
-          <li>
-            <Button text={'След'} onClick={handleNextAd} />
-          </li>
-        </ul>
       </nav>
-    </div>
+    </main>
   )
 }
