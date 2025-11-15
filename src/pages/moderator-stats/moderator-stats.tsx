@@ -78,6 +78,7 @@ export function ModeratorStats() {
             onChange={handleSetFilter}
             checked={period === 'today'}
             label={'Сегодня'}
+            checkedFill={'var(--icon-color)'}
           />
 
           <Input
@@ -87,6 +88,7 @@ export function ModeratorStats() {
             onChange={handleSetFilter}
             checked={period === 'week'}
             label={'7д'}
+            checkedFill={'var(--icon-color)'}
           />
 
           <Input
@@ -96,6 +98,7 @@ export function ModeratorStats() {
             onChange={handleSetFilter}
             checked={period === 'month'}
             label={'30д'}
+            checkedFill={'var(--icon-color)'}
           />
         </fieldset>
       </section>
@@ -113,7 +116,7 @@ export function ModeratorStats() {
           {categories && <DoughnutChart data={categories} />}
         </section>
       )}
-      {hasAnyDiagram && <NoData />}
+      {!hasAnyDiagram && <NoData />}
     </div>
   )
 }
