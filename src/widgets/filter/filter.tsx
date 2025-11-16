@@ -70,18 +70,18 @@ export function Filter({
           id={'category-select'}
           onChange={handleFilterChange}
           name={'categoryId'}
-          value={filters.categoryId ?? ''}
+          value={String(filters.categoryId ?? '')}
           className={style.input}
         >
           <option value=''>Любая категория</option>
-          <option value={0}>Электроника</option>
-          <option value={1}>Недвижимость</option>
-          <option value={2}>Транспорт</option>
-          <option value={3}>Работа</option>
-          <option value={4}>Услуги</option>
-          <option value={5}>Животные</option>
-          <option value={6}>Мода</option>
-          <option value={7}>Детское</option>
+          <option value={'0'}>Электроника</option>
+          <option value={'1'}>Недвижимость</option>
+          <option value={'2'}>Транспорт</option>
+          <option value={'3'}>Работа</option>
+          <option value={'4'}>Услуги</option>
+          <option value={'5'}>Животные</option>
+          <option value={'6'}>Мода</option>
+          <option value={'7'}>Детское</option>
         </select>
       </div>
       {/* Секция фильтров по цене */}
