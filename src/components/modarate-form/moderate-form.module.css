@@ -96,6 +96,10 @@
   fill: var(--accent-color-type-two);
 }
 
+select {
+  color: #fff
+}
+
 .select-label {
   margin-inline-end: 0.5rem;
 }
