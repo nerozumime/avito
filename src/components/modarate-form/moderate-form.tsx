@@ -42,7 +42,7 @@ export function ModerateForm({ status, callback, adId }: ModerateFormProps) {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     if (!validateForm()) return
-    const reason = form.quickReason !== 'Другое' ? form.quickReason : form.reason
+    const reason = form.reason ? form.reason : form.quickReason
     try {
       if (isReject) {
         await AdsApi.rejectAd(parseInt(adId), reason, form.comment)
