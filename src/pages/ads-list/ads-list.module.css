@@ -19,10 +19,10 @@
   background-color: var(--accent-color-type-one);
   border: none;
   border-radius: 0.4rem;
-  bottom: 1rem;
   padding: 0.5rem 1rem;
   position: absolute;
   right: 1rem;
+  top: 1rem;
   transition: 0.2s ease;
 }
 
@@ -31,9 +31,8 @@
   transition: 0.2s ease;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 650px) {
   .stats-nav-button {
-    max-width: 100px;
-    right: 0;
+    top: 6rem
   }
 }
