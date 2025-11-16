@@ -47,7 +47,7 @@
 }
 
 .button-request-changes {
-  background-color: var(--accent-yellow-color);
+  background-color: var(--accent-color-type-five);
 }
 
 .button:hover {
